@@ -1,5 +1,5 @@
 <template>
-<div class="card image-size">
+<div class="card image-size fade-in">
   <div v-if="deleteMode" class="card-header is-flex is-justify-content-flex-end">
     <button @click="$emit('removeImage')" class="delete is-large delete-btn"></button>
   </div>
@@ -14,7 +14,6 @@
     </div>
   </div>
 </div>
- 
 </template>
 
 <style lang="css" scoped>
@@ -27,6 +26,16 @@
 .delete-btn {
   margin: 5px;
 }
+
+.fade-in {
+  animation: fadeIn ease 1s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
 
 @media (max-width: 1024px) {
   .image-size {
@@ -51,14 +60,11 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ImageCard',
-  methods: {
-   
-  },
   props: {
     imgSrc: String,
     imgName: String,
     deleteMode: Boolean
-  }
+  },
   })
   
 </script>

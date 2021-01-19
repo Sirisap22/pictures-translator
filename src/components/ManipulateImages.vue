@@ -43,12 +43,12 @@
   <div class="container is-centered">
     <div class="is-flex is-flex-wrap-wrap is-justify-content-center">
       <ImageCard
-       v-for="(image, index) in images" 
-       :key="index" 
-       :img-src="imageToURL(image)" 
-       :img-name="image.name" 
-       :delete-mode="isDeleteMode" 
-       @remove-image="removeImage([index])"
+        v-for="(image, index) in images" 
+        :key="index" 
+        :img-src="imageToURL(image)" 
+        :img-name="image.name" 
+        :delete-mode="isDeleteMode" 
+        @remove-image="removeImage(index)"
       />
     </div>
   </div>
@@ -63,7 +63,6 @@
 #images-preview {
   margin-top: 20px;
 }
-
 
 </style>
 
@@ -85,7 +84,10 @@ export default defineComponent({
       deleteButtonStyle: {
         "is-primary": true,
         "is-danger": false
-      } as {"is-primary": boolean; "is-danger": boolean}
+      } as {"is-primary": boolean; "is-danger": boolean},
+      cardFadeOutStyle: {
+        "fade-out": false
+      }
     }
   },
   methods: {
@@ -97,19 +99,16 @@ export default defineComponent({
         }
       }
     },
-    removeImage(deleteIndexs: number[]) {
-      for (const index of deleteIndexs) {
+    removeImage(deleteIndex: number) {
         if (this.images.length <= 1) {
           this.images = [];
         } else {
-          this.images.splice(index, 1);
+          this.images.splice(deleteIndex, 1);
         }
-      }
-
-      // automatically exit delete mode if do not have image;
-      if (this.images.length <= 0) {
-        this.isDeleteMode = false;
-      }
+        // automatically exit delete mode if do not have image;
+        if (this.images.length <= 0) {
+         this.isDeleteMode = false;
+        }
     },
     imageToURL(img: File) {
       return URL.createObjectURL(img);
