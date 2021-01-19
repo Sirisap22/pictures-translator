@@ -7,6 +7,10 @@
 </template>
 
 <style>
+body, html {
+  height: 100%;
+  background-color: rgb(238, 233, 233);
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
