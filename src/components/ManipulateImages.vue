@@ -1,4 +1,5 @@
 <template>
+
 <section id="button-upload">
   <div class="columns is-mobile is-multiline is-centered">
     <div class="column is-narrow">
@@ -6,6 +7,7 @@
         <label class="file-label "> 
           <input type="file" 
           :disabled="isDeleteMode"  
+          ref="imagesInput"
           class="file-input" 
           accept="image/*" 
           name="images" 
@@ -32,11 +34,8 @@
       >
       Delete images
       </button>
-    </div>
-   
-    
+    </div>  
   </div>
-
 </section>
 
 <section id="images-preview">
@@ -53,9 +52,11 @@
     </div>
   </div>
 </section>
+
 </template>
 
 <style scoped>
+
 .custom-width {
   width: 195.86px;
 }
@@ -67,9 +68,10 @@
 </style>
 
 <script lang="ts">
+
 import { defineComponent } from 'vue';
 
-import { CustomEventInput, UploadFilesEventTarget } from './utils/types';
+import { CustomEventInput, UploadFilesEventTarget, HTMLFilesInputElement } from './utils/types';
 import ImageCard from './ImageCard.vue';
 
 export default defineComponent({
@@ -97,6 +99,10 @@ export default defineComponent({
         for (const image of e.target.files) {
           this.images.push(image);
         }
+
+        // clear path input in element
+        const ref = this.$refs.imagesInput as HTMLFilesInputElement;
+        ref.value = '';
       }
     },
     removeImage(deleteIndex: number) {
@@ -131,5 +137,6 @@ export default defineComponent({
   }
   
 });
+
 </script>
 

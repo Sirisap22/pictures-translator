@@ -1,6 +1,6 @@
 <template>
 <div class="card image-size fade-in">
-  <div v-if="deleteMode" class="card-header is-flex is-justify-content-flex-end">
+  <div v-if="deleteMode" class="card-header slide-up is-flex is-justify-content-center">
     <button @click="$emit('removeImage')" class="delete is-large delete-btn"></button>
   </div>
   <div class="card-image">
@@ -31,9 +31,26 @@
   animation: fadeIn ease 1s;
 }
 
+.slide-up {
+  animation: slideUp ease 1s;
+}
+
 @keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform:translateY(50px);
+  }
+  100% {
+    transform:translateY(0);
+  }
 }
 
 

@@ -8,3 +8,10 @@ export interface CustomEventInput<T = EventTarget> extends EventTemp {
 export interface UploadFilesEventTarget extends EventTarget {
   files: File[];
 }
+
+type HTMLInputElementTemp = Omit<Omit<HTMLInputElement, 'files'>, 'value'>;
+
+export interface HTMLFilesInputElement extends HTMLInputElementTemp {
+  value: String;
+  files: File[];
+}
