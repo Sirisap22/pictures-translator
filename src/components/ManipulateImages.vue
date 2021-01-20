@@ -26,7 +26,7 @@
       </div>
     </div>
     
-    <div class="column is-narrow" v-if="haveImage">
+    <div class="column is-narrow slide-left" v-if="haveImage">
       <button
       class="button" 
       :class="deleteButtonStyle" 
@@ -63,6 +63,22 @@
 
 #images-preview {
   margin-top: 20px;
+}
+
+.slide-left {
+  animation: slideLeft ease .5s;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(150px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 </style>
